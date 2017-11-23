@@ -156,11 +156,11 @@ export default {
                 this.player_volume = e.target.value
             },
             mute_unmute () {
-                if (this.isMuted) {
-                    this.isMuted = false
+                if (!this.isMuted) {
+                    this.isMuted = true
                     this.player_volume = 0
                 } else {
-                    this.isMuted = true
+                    this.isMuted = false
                     this.player_volume = 80
                 }
             },
@@ -276,6 +276,7 @@ export default {
             bus.$on('clickedOnASong', (searchResult) => {
                 this.line_percentage = 0
                 this.videoInfo = searchResult
+                bus.$emit('changedSongSoChangeTheAppBgToo', this.videoInfo.thumbnails.high.url)
                 this.videoId = this.$store.state.youtube_current_playing_song_id
                 this.is_playing = true
             })

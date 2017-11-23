@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     current_playing_song: null,
     youtube_current_playing_song_id: null,
-    search_result: []
+    search_result: [],
+    appBackground: null
   },
   mutations: {
     search_youtube (state, payload) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     updateYoutubeCurrentPlayingSongId (state, payload) {
       state.youtube_current_playing_song_id = payload
+    },
+    setAppBackground (state, payload) {
+      state.appBackground = payload
     }
   },
   actions: {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     },
     updateYoutubeCurrentPlayingSongId ({commit}, payload) {
       commit('updateYoutubeCurrentPlayingSongId', payload)
+    },
+    setAppBackground ({commit}, payload) {
+      commit('setAppBackground', payload)
     }
   },
   strict: process.env.NODE_ENV !== 'production'

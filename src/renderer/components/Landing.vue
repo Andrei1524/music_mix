@@ -1,17 +1,14 @@
 <template>
     <div class="main">
-        <app-search></app-search>
         <app-searchResults></app-searchResults>
     </div>
 </template>
 
 <script>
-import Search from '../components/Search.vue'
 import SearchResults from '../components/SearchResults.vue'
 export default {
 
     components: {
-        'app-search': Search,
         'app-searchResults': SearchResults
     }
 }
@@ -20,5 +17,6 @@ export default {
 <style scoped>
 .main {
     padding: 0 8px;
+    background: rgba(15, 20, 25, 0.59);
 }
 </style>

@@ -42,8 +42,10 @@ export default {
 
     },
     created () {
+        if (this.$store.state.search_result) {
+            this.search_results = this.$store.state.search_result
+        }
         bus.$on('searched', () => {
-            this.search_results = []
             this.search_results = this.$store.state.search_result
         })
     }

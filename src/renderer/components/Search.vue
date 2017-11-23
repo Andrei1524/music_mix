@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import { yt_key } from '../../config/config.js'
+import { ytKey } from '../../config/config.js'
 import search from 'youtube-search'
 
 let opts = {
   maxResults: 10,
-  key: yt_key
+  key: ytKey
 }
 
 export default {
@@ -62,11 +62,7 @@ export default {
         search_youtube () {
             search(this.youtube_text_search, opts, (err, results) => {
             if (err) return console.log(err)
-            if (this.youtube_text_search === '') {
-                this.$store.dispatch('search_youtube', [])
-            } else {
                 this.$store.dispatch('search_youtube', results)
-            }
             })
         }
     },
