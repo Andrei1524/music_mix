@@ -10,8 +10,13 @@ export default new Router({
       component: require('@/components/Landing').default
     },
     {
-      path: '/playlist',
+      path: '/playlists',
       name: 'user-playlists',
+      component: require('@/components/PlaylistsList.vue').default
+    },
+    {
+      path: '/playlist/:name',
+      name: 'user-playlist',
       component: require('@/components/Playlist.vue').default
     },
     {

@@ -18,6 +18,9 @@
                         <path fill="#FFF" d="M10.001 7.8c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2c1.215 0 2.199-0.985 2.199-2.2s-0.984-2.2-2.199-2.2zM3.001 7.8c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2c1.215 0 2.199-0.986 2.199-2.2s-0.984-2.2-2.199-2.2zM17.001 7.8c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2c1.215 0 2.199-0.985 2.199-2.2s-0.984-2.2-2.199-2.2z"></path>
                     </svg>
 
+                    <div class="options-dropdown">
+                        <span>Add to Playlist</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,12 +86,23 @@ export default {
     align-items: center;
     padding: 10px;
     margin-bottom: 5px;
+    height: 80px;
+    box-sizing: border-box;
 }
 
 .music-card-left {
     display: flex;
     cursor: pointer;
     user-select: none;
+}
+
+.music-card-right {
+    cursor: pointer;
+    padding: 0px 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .music-card-picture {
@@ -125,4 +139,29 @@ p {
     display: block;
     width: 100%;
 }
+
+.more-options {
+    position: relative;
+}
+
+.options-dropdown {
+    position: absolute;
+    left: -47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    width: 70px;
+}
+
+.options-dropdown span {
+    display: block;
+    color: #FFF;
+    font-weight: 200;
+    font-size: 13px;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
 </style>

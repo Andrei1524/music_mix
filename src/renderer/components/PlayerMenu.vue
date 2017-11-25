@@ -3,7 +3,7 @@
       <router-link to="/" class="options active" exact-active-class="active-link">
         <span>SEARCH RESULTS</span>
       </router-link>
-      <router-link to="/playlist" class="options active" exact-active-class="active-link">
+      <router-link to="/playlists" class="options active" exact-active-class="active-link">
           <span>MY PLAYLISTS</span>
       </router-link>
   </div>

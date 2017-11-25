@@ -204,7 +204,7 @@ export default {
                     }
                 } else {
                     return {
-                        'fa fa-stop': this.is_playing
+                        'fa fa-pause': this.is_playing
                     }
                 }
             },

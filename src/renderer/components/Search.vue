@@ -27,7 +27,9 @@ import { ytKey } from '../../config/config.js'
 import search from 'youtube-search'
 
 let opts = {
-  maxResults: 10,
+  maxResults: 15,
+  type: 'video',
+  videoEmbeddable: true,
   key: ytKey
 }
 
