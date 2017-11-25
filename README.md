@@ -2,6 +2,12 @@
 
 > Listen music from soundcloud and youtube in one place,on your desktop!
 
+![demo](https://i.imgur.com/0hSF3nN.gif)
+
+TODO:
+ - shuffle
+ - playlists saved on pc in json format
+ - more..
 #### Build Setup
 
 ``` bash
