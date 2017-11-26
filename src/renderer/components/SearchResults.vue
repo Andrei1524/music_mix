@@ -19,7 +19,7 @@
                     </svg>
 
                     <div class="options-dropdown">
-                        <span>Add to Playlist</span>
+                        <span @click="addToPlaylist(search_result)">Add to Playlist</span>
                     </div>
                 </div>
             </div>
@@ -39,6 +39,10 @@ export default {
         async update_youtube_id (searchResult) {
             await this.$store.dispatch('updateYoutubeCurrentPlayingSongId', searchResult.id)
             bus.$emit('clickedOnASong', searchResult)
+        },
+        async addToPlaylist (search_result) {
+            await this.$store.dispatch('AddToPlaylistMenu', true)
+            this.$store.dispatch('selectedSongToAddToPlaylist', search_result)
         }
     },
     watch: {
@@ -75,7 +79,7 @@ export default {
 .results {
     margin-top: 5px;
     background-color: rgba(15, 20, 25, 0.87);
-    max-height: 350px;
+    max-height: 330px;
     overflow: auto;
 }
 
@@ -147,11 +151,14 @@ p {
 .options-dropdown {
     position: absolute;
     left: -47px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     /* text-align: center; */
-    width: 70px;
+    width: 80px;
+    padding: 5px 0;
+    background: #141a21;
+    height: 100%;
 }
 
 .options-dropdown span {
@@ -159,9 +166,16 @@ p {
     color: #FFF;
     font-weight: 200;
     font-size: 13px;
+    padding: 5px;
     /* display: flex; */
     /* align-items: center; */
     /* justify-content: center; */
+}
+.options-dropdown span:hover {
+    background-color: #2a3c52;
+}
+.music-card-right:hover .options-dropdown {
+    display: flex;
 }
 
 </style>

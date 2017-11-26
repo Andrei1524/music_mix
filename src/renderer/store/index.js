@@ -11,7 +11,9 @@ export default new Vuex.Store({
     current_playing_song: null,
     youtube_current_playing_song_id: null,
     search_result: [],
-    appBackground: null
+    appBackground: null,
+    addToPlaylistMenu: false,
+    selectedSongToAddToPlaylist: undefined
   },
   mutations: {
     search_youtube (state, payload) {
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     },
     setAppBackground (state, payload) {
       state.appBackground = payload
+    },
+    AddToPlaylistMenu (state, payload) {
+      state.addToPlaylistMenu = payload
+    },
+    selectedSongToAddToPlaylist (state, payload) {
+      state.selectedSongToAddToPlaylist = payload
     }
   },
   actions: {
@@ -34,6 +42,12 @@ export default new Vuex.Store({
     },
     setAppBackground ({commit}, payload) {
       commit('setAppBackground', payload)
+    },
+    AddToPlaylistMenu ({commit}, payload) {
+      commit('AddToPlaylistMenu', payload)
+    },
+    selectedSongToAddToPlaylist ({commit}, payload) {
+      commit('selectedSongToAddToPlaylist', payload)
     }
   },
   strict: process.env.NODE_ENV !== 'production'

@@ -1,12 +1,12 @@
 <template>
   <div class="playlist">
-    <div class="playlist-wrapper">
-      <h3>2017</h3>
-      <div class="playlist-body">
+    <div class="playlist-wrapper" v-for="playlist in playlists" v-bind:key="playlist.name">
+      <h3>{{ playlist.name }}</h3>
+      <div class="playlist-body" :style="'background-color:url('+''+')'">
         <div class="playlist-body-overlay">
-            <div class="playlist-body-play">
+            <router-link to="/playlist/mymusic" class="playlist-body-play">
               <span><i class="fa fa-play" aria-hidden="true"></i></span>
-            </div>
+            </router-link>
         </div>
       </div>
     </div>
@@ -14,17 +14,20 @@
 </template>
 
 <script>
+import Datastore from 'nedb'
+
+
 import Playlist from '../components/Playlist.vue'
 import storage from 'electron-json-storage'
 export default {
   data () {
     return {
-
+      playlists: undefined
     }
   },
   created () {
-    storage.getAll((error, playlists) => {
-      if (error) throw error
+    storage.get('playlists', (err, playlists) => {
+      this.playlists = playlists
       console.log(playlists)
     })
   }

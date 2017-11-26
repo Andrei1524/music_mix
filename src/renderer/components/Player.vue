@@ -304,6 +304,7 @@ i {
     background-color: #0F1419;
     padding: 8px 8px;
     width: calc(100% - 16px);
+    z-index: 1000;
 }
 
 .player-top {

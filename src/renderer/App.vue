@@ -3,6 +3,7 @@
     <app-tobBar></app-tobBar>
     <app-search></app-search>
     <app-player-menu></app-player-menu>
+    <app-addToPlaylist v-if="openAddToPlaylistMenu"></app-addToPlaylist>
     <router-view></router-view>
     <app-player></app-player>
   </div>
@@ -14,6 +15,8 @@
   import Search from './components/Search.vue'
   import PlayerMenu from './components/PlayerMenu.vue'
   import Player from './components/Player.vue'
+  import AddToPlaylist from './components/AddToPlaylist.vue'
+  
   export default {
     name: 'music_mix',
     data () {
@@ -21,6 +24,11 @@
       }
     },
     computed: {
+      openAddToPlaylistMenu () {
+        if (this.$store.state.addToPlaylistMenu) {
+          return true
+        }
+      }
     },
     created () {
     },
@@ -28,7 +36,8 @@
       'app-tobBar': TopBar,
       'app-search': Search,
       'app-player-menu': PlayerMenu,
-      'app-player': Player
+      'app-player': Player,
+      'app-addToPlaylist': AddToPlaylist
     }
   }
 </script>
