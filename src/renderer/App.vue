@@ -11,6 +11,7 @@
 
 <script>
   import { bus } from './main'
+  import storage from 'electron-json-storage'
   import TopBar from './components/layout/TopBar.vue'
   import Search from './components/Search.vue'
   import PlayerMenu from './components/PlayerMenu.vue'
@@ -31,6 +32,9 @@
       }
     },
     created () {
+      if (storage.get('playlists') === undefined) {
+        storage.set('playlists', [])
+      }
     },
     components: {
       'app-tobBar': TopBar,

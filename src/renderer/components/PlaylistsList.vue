@@ -28,7 +28,6 @@ export default {
   created () {
     storage.get('playlists', (err, playlists) => {
       this.playlists = playlists
-      console.log(playlists)
     })
   }
 }
@@ -40,6 +39,7 @@ export default {
     display: block;
     height: 330px;
     margin: 10px;
+    text-align: center;
     overflow: auto;
 }
 

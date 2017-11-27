@@ -22,7 +22,7 @@
             <div class="playlist-body" @click="addSongToSelectedPlaylist(playlist)">
                 <div class="playlist-body-overlay">
                     <span class="playlist-body-play">
-                    <span><i class="fa fa-play" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-plus" aria-hidden="true"></i></span>
                     </span>
                 </div>
             </div>
@@ -41,25 +41,27 @@ export default {
         return {
             songInfo: undefined,
             selectedPlaylistName: "",
-            playlists: undefined,
+            playlists: [],
             PlaylistAddOptions: false,
             PlaylistName: ""
         }
     },
     methods: {
-        async createNewPlaylist () {
-            storage.get('playlists', [], (err, playlists) => {
-                if (playlists.length === undefined) {
-                    storage.set('playlists', [])
-                }
-                    let current_playlists = playlists
-                    let new_playlist = {
-                        name: this.PlaylistName,
-                        songs: []
-                    }
-                    current_playlists.push(new_playlist)
-                    storage.set('playlists', current_playlists)
+        createNewPlaylist () {
+            let playlist_config = {
+                    name: this.PlaylistName,
+                    songs: []
+            }
+
+            storage.get('playlists', (err, playlists) => {
+                let current_playlist = playlists
+
+                current_playlist.push(playlist_config)
+                storage.set('playlists', current_playlist)
             })
+             this.playlists.push(playlist_config)
+            bus.$emit('createdPlaylist')
+            this.PlaylistAddOptions = false
         },
         addSongToSelectedPlaylist (playlist) {
             storage.get('playlists', (err, playlists) => {
@@ -80,16 +82,20 @@ export default {
                         }
                         playlistArray.songs.forEach(song => {
                             if (song.info.id == this.songInfo.id) {
-                                console.log("duplicate song")
+                                // console.log("duplicate song")
                                 return
                             }
                             playlistArray.songs.push(song_to_add_to_playlist_selected)
-                            console.log(playlists)
                             storage.set('playlists', playlists)
                             
                         })
                     }
                 })
+            })
+        },
+        getPlaylists () {
+            storage.get('playlists', (err, playlists) => {
+                this.playlists = playlists
             })
         },
         closeAddToPlaylistMenu () {
@@ -101,8 +107,10 @@ export default {
             this.songInfo = this.$store.state.selectedSongToAddToPlaylist
         }
 
-        storage.get('playlists', (err, playlists) => {
-            this.playlists = playlists
+        this.getPlaylists()
+
+        bus.$on('createdPlaylist', () => {
+            this.$forceUpdate()
         })
         
     }
