@@ -4,11 +4,15 @@
 
 ![demo](https://i.imgur.com/0hSF3nN.gif)
 
+
 TODO:
  - shuffle
  - playlists saved on pc in json format
  - more..
 #### Build Setup
+
+Thanks to:
+@syropian, for helping with the volume thing
 
 ``` bash
 # install dependencies

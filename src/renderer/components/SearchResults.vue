@@ -50,7 +50,7 @@ export default {
     watch: {
 
     },
-    created () {
+    async created () {
         if (this.$store.state.search_result) {
             this.search_results = this.$store.state.search_result
         }

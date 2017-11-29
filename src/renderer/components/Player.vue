@@ -109,7 +109,7 @@ export default {
                     let seconds = new Date(ms).getTime()
                     let secondsPassed = moment('1900-01-01 00:00:00').add(seconds, 'seconds').format('m:ss')
 
-                    this.player.setVolume(this.player_volume)
+                    // this.player.setVolume(this.player_volume)
 
                     let videoLengthMs = this.player.getDuration()
                     let videoLength = this.player.getDuration() - seconds
@@ -124,7 +124,7 @@ export default {
                     if (this.setLoop) {
                         this.player.setLoop()
                     }
-                }, 300)
+                }, 1000)
             },
             stop () {
                 this.player.stopVideo()
@@ -152,8 +152,9 @@ export default {
             playerInputLineRange (e, player) {
                 this.player.seekTo(this.player_length_no_format_ms * (e.target.value / 100))
             },
-            change_volume (e) {
+            change_volume (e, player) {
                 this.player_volume = e.target.value
+                this.player.setVolume(this.player_volume)
             },
             mute_unmute () {
                 if (!this.isMuted) {
@@ -166,14 +167,19 @@ export default {
             },
             nextSong () {
                 let currentPlayingSongIndex
-
                 this.$store.state.search_result.forEach(result => {
                     if (result.id === this.videoId) {
                          currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
                     }
+                    
                 })
-                this.videoId = this.$store.state.search_result[currentPlayingSongIndex + 1].id
-                this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex + 1]
+                if (currentPlayingSongIndex === this.$store.state.search_result.length - 1) {
+                    this.videoId = this.$store.state.search_result[0].id
+                    this.videoInfo = this.$store.state.search_result[0]
+                } else {
+                    this.videoId = this.$store.state.search_result[currentPlayingSongIndex + 1].id
+                    this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex + 1]
+                }
             },
             previousSong () {
                 let currentPlayingSongIndex
@@ -183,8 +189,13 @@ export default {
                          currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
                     }
                 })
-                this.videoId = this.$store.state.search_result[currentPlayingSongIndex - 1].id
-                this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex - 1]
+                if (currentPlayingSongIndex === 0) {
+                    // do nothing
+                } else {
+                    this.videoId = this.$store.state.search_result[currentPlayingSongIndex - 1].id
+                    this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex - 1]
+                }
+               
             },
             setSongRepeat () {
                 if (this.set_song_repeat) {
