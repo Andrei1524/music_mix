@@ -11,6 +11,9 @@ export default new Vuex.Store({
     current_playing_song: null,
     youtube_current_playing_song_id: null,
     search_result: [],
+    current_playlist_array: [],
+    play_from_playlists: false,
+    play_from_search_results: false,
     appBackground: null,
     addToPlaylistMenu: false,
     selectedSongToAddToPlaylist: undefined
@@ -19,6 +22,17 @@ export default new Vuex.Store({
     search_youtube (state, payload) {
       state.search_result = payload
       bus.$emit('searched', null)
+    },
+    updateCurrentPlaylistArray (state, payload) {
+      state.current_playlist_array = payload
+    },
+    playFromSearchList (state, payload) {
+      state.play_from_playlists = false
+      state.play_from_search_results = payload
+    },
+    playFromPlaylist (state, payload) {
+      state.play_from_search_results = false
+      state.play_from_playlists = payload
     },
     updateYoutubeCurrentPlayingSongId (state, payload) {
       state.youtube_current_playing_song_id = payload
@@ -37,6 +51,9 @@ export default new Vuex.Store({
     search_youtube ({commit}, payload) {
       commit('search_youtube', payload)
     },
+    updateCurrentPlaylistArray ({commit}, payload) {
+      commit('updateCurrentPlaylistArray', payload)
+    },
     updateYoutubeCurrentPlayingSongId ({commit}, payload) {
       commit('updateYoutubeCurrentPlayingSongId', payload)
     },
@@ -48,6 +65,14 @@ export default new Vuex.Store({
     },
     selectedSongToAddToPlaylist ({commit}, payload) {
       commit('selectedSongToAddToPlaylist', payload)
+    },
+    // play from search list
+    playFromSearchList ({commit}, payload) {
+      commit('playFromSearchList', payload)
+    },
+    // play from playlist
+    playFromPlaylist ({commit}, payload) {
+      commit('playFromPlaylist', payload)
     }
   },
   strict: process.env.NODE_ENV !== 'production'

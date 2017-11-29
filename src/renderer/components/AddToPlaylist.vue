@@ -65,32 +65,34 @@ export default {
         },
         addSongToSelectedPlaylist (playlist) {
             storage.get('playlists', (err, playlists) => {
+                // song config
+                let song_to_add = {
+                    title: this.songInfo.title,
+                    info: this.songInfo
+                }
+
+                let isSongAlreadyInThePlaylist = false
+                // check if song is already in the playlist
                 playlists.forEach(playlistArray => {
-                    // select the matched playlist
                     if (playlistArray.name === playlist.name) {
-                        // song we want to add
-                        // songInfo.title
-                        let song_to_add_to_playlist_selected = {
-                            title: this.songInfo.title,
-                            info: this.songInfo
-                        }
-                        // lets go over the current playlist songs and check is is duplicate
-                        if (playlistArray.songs.length === 0) {
-                            playlistArray.songs.push(song_to_add_to_playlist_selected)
-                            storage.set('playlists', playlists)
-                            return
-                        }
                         playlistArray.songs.forEach(song => {
-                            if (song.info.id == this.songInfo.id) {
-                                // console.log("duplicate song")
-                                return
+                            if (song.info.id === song_to_add.info.id) {
+                                isSongAlreadyInThePlaylist = true
                             }
-                            playlistArray.songs.push(song_to_add_to_playlist_selected)
-                            storage.set('playlists', playlists)
-                            
                         })
                     }
                 })
+                //
+               if (!isSongAlreadyInThePlaylist) {
+                   playlists.forEach(playlistArray => {
+                       if (playlistArray.name === playlist.name) {
+                           playlistArray.songs.push(song_to_add)
+                           storage.set('playlists', playlists)
+                       }
+                   })
+               }
+
+
             })
         },
         getPlaylists () {

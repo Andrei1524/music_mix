@@ -11,7 +11,6 @@
 
 <script>
   import { bus } from './main'
-  import os from 'os'
   import storage from 'electron-json-storage'
   import TopBar from './components/layout/TopBar.vue'
   import Search from './components/Search.vue'

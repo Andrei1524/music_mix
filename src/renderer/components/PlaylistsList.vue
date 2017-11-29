@@ -4,7 +4,7 @@
       <h3>{{ playlist.name }}</h3>
       <div class="playlist-body" :style="'background-color:url('+''+')'">
         <div class="playlist-body-overlay">
-            <router-link to="/playlist/mymusic" class="playlist-body-play">
+            <router-link :to="'playlist/' + playlist.name" class="playlist-body-play">
               <span><i class="fa fa-play" aria-hidden="true"></i></span>
             </router-link>
         </div>
@@ -28,7 +28,9 @@ export default {
   created () {
     storage.get('playlists', (err, playlists) => {
       this.playlists = playlists
+      console.log(playlists)
     })
+     //storage.clear('playlists')
   }
 }
 </script>
@@ -89,7 +91,9 @@ export default {
   box-shadow: inset 0 0 20px 0px rgba(0, 0, 0, 0.32);
 
 }
-
+.playlist-body-overlay a {
+  text-decoration: none;
+}
 .playlist-body-play {
     display: flex;
     align-items: center;

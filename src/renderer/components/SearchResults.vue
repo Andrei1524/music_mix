@@ -39,6 +39,8 @@ export default {
         async update_youtube_id (searchResult) {
             await this.$store.dispatch('updateYoutubeCurrentPlayingSongId', searchResult.id)
             bus.$emit('clickedOnASong', searchResult)
+            // also enable play from search list
+            this.$store.dispatch('playFromSearchList', true)
         },
         async addToPlaylist (search_result) {
             await this.$store.dispatch('AddToPlaylistMenu', true)
