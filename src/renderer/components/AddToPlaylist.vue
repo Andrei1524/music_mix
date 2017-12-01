@@ -59,7 +59,7 @@ export default {
                 current_playlist.push(playlist_config)
                 storage.set('playlists', current_playlist)
             })
-             this.playlists.push(playlist_config)
+            this.playlists.push(playlist_config)
             bus.$emit('createdPlaylist')
             this.PlaylistAddOptions = false
         },
@@ -114,7 +114,6 @@ export default {
         bus.$on('createdPlaylist', () => {
             this.$forceUpdate()
         })
-        
     }
 }
 </script>
