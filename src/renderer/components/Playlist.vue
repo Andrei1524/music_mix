@@ -23,29 +23,30 @@ import { bus } from '../main'
 export default {
   data () {
     return {
-      playlist: undefined
+      playlist: undefined,
+      playlistToUpdate: []
     }
   },
   methods: {
     playSong (song) {
       this.$store.dispatch('updateYoutubeCurrentPlayingSongId', song.info.id)
       bus.$emit('clickedOnASong', song.info)
+      this.$store.dispatch('updateCurrentPlaylistArray', this.playlistToUpdate)
     }
   },
   created () {
     // enable play from playlists
     this.$store.dispatch('playFromPlaylist', true)
     let playlist_name  = this.$route.params.name
-    let playlist_for_search_youtube = []
+    let playlist_to_update = []
     storage.get('playlists', (err, playlists) => {
       playlists.forEach(playlist => {
         if (playlist.name === playlist_name) {
           this.playlist = playlist
 
           playlist.songs.forEach(playlist_song => {
-            playlist_for_search_youtube.push(playlist_song.info)
+            this.playlistToUpdate.push(playlist_song.info)
           })
-          this.$store.dispatch('updateCurrentPlaylistArray', playlist_for_search_youtube)
         }
       })
     })
