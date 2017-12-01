@@ -88,11 +88,11 @@ export default {
                        if (playlistArray.name === playlist.name) {
                            playlistArray.songs.push(song_to_add)
                            storage.set('playlists', playlists)
+                            // close the playlist menu
+                            this.$store.dispatch('AddToPlaylistMenu', false)
                        }
                    })
                }
-
-
             })
         },
         getPlaylists () {

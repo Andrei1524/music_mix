@@ -1,5 +1,5 @@
 <template>
-  <div v-if="playlist">
+  <div class="playlist" v-if="playlist">
       <div v-for="song in playlist.songs" v-bind:key="song.id" class="playlist-song">
         <div class="playlist-left">
           <span @click="playSong(song)" class="playlist-left-play"><i class="fa fa-play" aria-hidden="true"></i></span>
@@ -54,6 +54,29 @@ export default {
 </script>
 
 <style scoped>
+
+.playlist {
+  max-height: 330px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #0A0D11;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #232e3c;
+}
+
+
 span {
   display: block;
 }

@@ -156,44 +156,83 @@ export default {
                 this.player_volume = e.target.value
                 this.player.setVolume(this.player_volume)
             },
-            mute_unmute () {
+            mute_unmute (player) {
+                // const last_vol  = this.player.getVolume()
                 if (!this.isMuted) {
                     this.isMuted = true
+                    this.player.setVolume(0)
                     this.player_volume = 0
                 } else {
                     this.isMuted = false
-                    this.player_volume = 80
+                    this.player.setVolume(100)
+                    this.player_volume = 100
                 }
             },
             nextSong () {
                 let currentPlayingSongIndex
-                this.$store.state.search_result.forEach(result => {
-                    if (result.id === this.videoId) {
-                         currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
-                    }
-                    
-                })
-                if (currentPlayingSongIndex === this.$store.state.search_result.length - 1) {
-                    this.videoId = this.$store.state.search_result[0].id
-                    this.videoInfo = this.$store.state.search_result[0]
-                } else {
-                    this.videoId = this.$store.state.search_result[currentPlayingSongIndex + 1].id
-                    this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex + 1]
+
+                // play songs from search result
+                if (this.$store.state.play_from_search_results) {
+                        this.$store.state.search_result.forEach(result => {
+                            if (result.id === this.videoId) {
+                                currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
+                            }
+                        })
+                        if (currentPlayingSongIndex === this.$store.state.search_result.length - 1) {
+                            this.videoId = this.$store.state.search_result[0].id
+                            this.videoInfo = this.$store.state.search_result[0]
+                        } else {
+                            this.videoId = this.$store.state.search_result[currentPlayingSongIndex + 1].id
+                            this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex + 1]
+                        }
                 }
+                // play songs from selected playlist
+                if (this.$store.state.play_from_playlists) {
+                    this.$store.state.current_playlist_array.forEach(result => {
+                            if (result.id === this.videoId) {
+                                currentPlayingSongIndex = this.$store.state.current_playlist_array.indexOf(result)
+                            }
+                        })
+                        if (currentPlayingSongIndex === this.$store.state.current_playlist_array.length - 1) {
+                            this.videoId = this.$store.state.current_playlist_array[0].id
+                            this.videoInfo = this.$store.state.current_playlist_array[0]
+                        } else {
+                            this.videoId = this.$store.state.current_playlist_array[currentPlayingSongIndex + 1].id
+                            this.videoInfo = this.$store.state.current_playlist_array[currentPlayingSongIndex + 1]
+                        }
+                }
+
+                
             },
             previousSong () {
                 let currentPlayingSongIndex
 
-                this.$store.state.search_result.forEach(result => {
-                    if (result.id === this.videoId) {
-                         currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
+                if (this.$store.state.play_from_search_results) { 
+                    this.$store.state.search_result.forEach(result => {
+                        if (result.id === this.videoId) {
+                            currentPlayingSongIndex = this.$store.state.search_result.indexOf(result)
+                        }
+                    })
+                    if (currentPlayingSongIndex === 0) {
+                        // do nothing
+                    } else {
+                        this.videoId = this.$store.state.search_result[currentPlayingSongIndex - 1].id
+                        this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex - 1]
                     }
-                })
-                if (currentPlayingSongIndex === 0) {
-                    // do nothing
-                } else {
-                    this.videoId = this.$store.state.search_result[currentPlayingSongIndex - 1].id
-                    this.videoInfo = this.$store.state.search_result[currentPlayingSongIndex - 1]
+                }
+
+                if (this.$store.state.play_from_playlists) {
+                    this.$store.state.current_playlist_array.forEach(result => {
+                        if (result.id === this.videoId) {
+                            currentPlayingSongIndex = this.$store.state.current_playlist_array.indexOf(result)
+                        }
+                    })
+                    if (currentPlayingSongIndex === 0) {
+                        // do nothing
+                    } else {
+                        this.videoId = this.$store.state.current_playlist_array[currentPlayingSongIndex - 1].id
+                        this.videoInfo = this.$store.state.current_playlist_array[currentPlayingSongIndex - 1]
+                    }
                 }
                
             },

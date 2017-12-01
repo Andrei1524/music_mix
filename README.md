@@ -12,7 +12,7 @@ TODO:
 #### Build Setup
 
 Thanks to:
-@syropian, for helping with the volume thing
+@[syropian](https://github.com/syropian), for helping with the volume thing
 
 ``` bash
 # install dependencies
