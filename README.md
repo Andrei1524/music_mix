@@ -2,7 +2,7 @@
 
 > Listen music from soundcloud and youtube in one place,on your desktop!
 
-![demo](https://i.imgur.com/0hSF3nN.gif)
+![demo](https://i.imgur.com/xK0LYwE.gif)
 
 
 TODO:
