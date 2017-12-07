@@ -78,8 +78,9 @@ export default {
             set_song_repeat: false,
             playerVars: {
                 autoplay: 1,
-                width: 100,
-                height: 100
+                width: 800,
+                height: 500,
+                origin: "http://localhost:3000"
             }
         }
     },
@@ -101,6 +102,7 @@ export default {
                 if (this.set_song_repeat) {
                     this.player.playVideo()
                 }
+                
             },
             async playing (player) {
                 setInterval(async () => {
@@ -265,7 +267,7 @@ export default {
             },
             yt_player () {
                 return {
-                    'display': 'none'
+                    'display': 'none',
                 }
             },
             player_title_substr () {

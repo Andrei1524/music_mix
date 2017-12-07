@@ -1,7 +1,7 @@
 <template>
   <div class="topbar">
     <div class="logo">
-      <span>music_mixer</span>
+      <span>music_mix</span>
     </div>
     <div class="topbar-dragspace" style="-webkit-app-region: drag"></div>
     <div class="topbar-controls">
