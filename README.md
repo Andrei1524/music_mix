@@ -1,4 +1,7 @@
 # music_mix
+
+[download](https://github.com/AndreiKnight/music_mix/releases/download/v1.1.1/music_mix.Setup.1.1.1.exe)
+
 *** Music videos from vevo and other brands like this, doesn't allow playing on third-parties and only on youtube. I'm trying to work-around this or just find another solution ***
 
 > Listen music from soundcloud and youtube in one place,on your desktop!
