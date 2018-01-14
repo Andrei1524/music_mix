@@ -11,8 +11,6 @@
 
 TODO:
  - shuffle
- - playlists saved on pc in json format
- - more..
 #### Build Setup
 
 Thanks to:
